@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: blueviolet;
+    }
+
+    /* trick: packe animation in eigene CSS Klasse
+      und füge diese Klasse bei Button Klick immer hinzu! (=> das aktiviert animation)
+    */
+    .animate {
+      animation: movotate 1s 2 alternate;
+    }
+
+    /* move and rotate */
+    @keyframes movotate {
+      to {
+        translate: 200px
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div>
+
+  </div>
+
+
+  <script>
+
+    const div = document.querySelector("div")
+
+    // mache div klickbar
+    div.onclick = () => {
+      console.log("Du hast das DIV geklickt!")
+
+      // trick um animation mit pure JS zu resetten
+      // erst die animation starten per CSS klasse
+      div.classList.add("animate")
+      // wenn animation fertig (!) ist => klasse wieder removen 
+      // => code delayed ausführen mit setTimeout
+      setTimeout(() => {
+        div.classList.remove("animate")
+      }, 2000) // 2000 millisekunden = 2 sekunden
+       
+    }
+
+  </script>
+
+</body>
+</html>
